@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Manager</title>
+</head>
+<body>
+
+<h1>📖 Recipe Manager</h1>
+
+<h3>Add a Recipe</h3>
+<input type="text" id="nameInput" placeholder="Recipe name"><br><br>
+
+<textarea id="processInput" placeholder="Recipe process" rows="5" cols="40"></textarea><br><br>
+
+<button onclick="addRecipe()">Add Recipe</button>
+
+<hr>
+
+<h3>Recipes</h3>
+<div id="recipeList"></div>
+
+<script>
+function addRecipe() {
+    const name = document.getElementById("nameInput").value;
+    const process = document.getElementById("processInput").value;
+
+    if (name === "" || process === "") {
+        alert("Please enter both name and process!");
+        return;
+    }
+
+    const recipeDiv = document.createElement("div");
+    recipeDiv.style.border = "1px solid black";
+    recipeDiv.style.padding = "10px";
+    recipeDiv.style.marginBottom = "10px";
+
+    const title = document.createElement("h4");
+    title.textContent = name;
+
+    const steps = document.createElement("p");
+    steps.textContent = process;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.onclick = function () {
+        recipeDiv.remove();
+    };
+
+    recipeDiv.appendChild(title);
+    recipeDiv.appendChild(steps);
+    recipeDiv.appendChild(deleteBtn);
+
+    document.getElementById("recipeList").appendChild(recipeDiv);
+
+    document.getElementById("nameInput").value = "";
+    document.getElementById("processInput").value = "";
+}
+</script>
+
+</body>
+</html>
